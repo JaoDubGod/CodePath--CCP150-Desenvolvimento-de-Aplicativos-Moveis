@@ -1,28 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { InfoCard } from './src/components/InfoCard';
+import { ScreenLayout } from './src/components/ScreenLayout';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>CodePath</Text>
-      <Text>Meu aplicativo Expo está funcionando.</Text>
+    <SafeAreaProvider>
+      <ScreenLayout
+        title="Aprenda programação"
+        description="Pratique no seu ritmo e acompanhe sua evolução."
+      >
+        <InfoCard
+          title="Bem-vindo ao CodePath"
+          message="Este é o primeiro esboço da tela inicial."
+        />
+        <InfoCard
+          title="Próxima atividade"
+          message="O catálogo de exercícios será conectado nas próximas etapas."
+        />
+      </ScreenLayout>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F5F6F4',
-    padding: 24,
-  },
-  title: {
-    color: '#315F59',
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 12,
-  },
-});
