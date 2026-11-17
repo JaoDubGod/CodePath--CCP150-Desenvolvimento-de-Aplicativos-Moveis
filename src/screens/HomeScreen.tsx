@@ -15,10 +15,18 @@ export function HomeScreen() {
     >
       <InfoCard
         title="Seu estudo até agora"
-        message={`${solvedCount} exercícios resolvidos e ${attempts.length} tentativas registradas${backendStatus === 'connected' ? ' na sua conta' : ' nesta sessão'}.`}
+        message={`${solvedCount} exercícios resolvidos e ${attempts.length} tentativas registradas${backendStatus === 'connected' ? ' na sua conta' : backendStatus === 'local' ? ' neste dispositivo' : ' nesta sessão'}.`}
       />
       <InfoCard
-        title={backendStatus === 'connected' ? 'Banco conectado' : 'Armazenamento'}
+        title={
+          backendStatus === 'connected'
+            ? 'Banco conectado'
+            : backendStatus === 'connecting'
+              ? 'Conectando ao banco'
+              : backendStatus === 'error'
+                ? 'Banco indisponível'
+                : 'Armazenamento local'
+        }
         message={backendMessage}
       />
       <InfoCard
